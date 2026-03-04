@@ -1,0 +1,186 @@
+/* =============================================
+   1. TAILWIND IMPORTS (without preflight)
+   ============================================= */
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
+@import "tw-animate-css";
+
+/* Minimal reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+img, svg, video {
+  display: block;
+  max-width: 100%;
+}
+
+/* =============================================
+   2. CSS VARIABLES
+   ============================================= */
+:root {
+  /* Brand Colors */
+  --turq: #00C9B7;
+  --turq-dark: #00A89A;
+  --turq-light: #E6FBF9;
+  --turq-bg: #EDFFFE;
+  --pink: #FF5CA8;
+  --pink-hot: #FF1FA9;
+  --pink-bg: #FFF0F6;
+  --coral: #FF6B6B;
+  --grape: #8B5CF6;
+  --lime: #7DD636;
+  --sunny: #FFC400;
+  --deep: #1A1A2E;
+  --ink: #2B2B3D;
+  --muted: #9999AD;
+
+  /* shadcn tokens */
+  --radius: 0.75rem;
+  --background: #FFFFFF;
+  --foreground: #1A1A2E;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A2E;
+  --primary: #FF1FA9;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EDFFFE;
+  --secondary-foreground: #1A1A2E;
+  --muted-sh: #F5F0EB;
+  --muted-foreground: #9999AD;
+  --accent: #00C9B7;
+  --accent-foreground: #FFFFFF;
+  --destructive: #FF6B6B;
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(0,0,0,0.06);
+  --input: rgba(0,0,0,0.06);
+  --ring: #00C9B7;
+}
+
+/* =============================================
+   3. @theme inline
+   ============================================= */
+@theme inline {
+  --spacing: 0.25rem;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: #9999AD;
+  --color-muted-foreground: #9999AD;
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: rgba(0,0,0,0.06);
+  --color-input: rgba(0,0,0,0.06);
+  --color-ring: #00C9B7;
+
+  /* Brand colors - direct hex for opacity support */
+  --color-turq: #00C9B7;
+  --color-turq-dark: #00A89A;
+  --color-turq-light: #E6FBF9;
+  --color-turq-bg: #EDFFFE;
+  --color-pink-brand: #FF5CA8;
+  --color-pink-hot: #FF1FA9;
+  --color-pink-bg: #FFF0F6;
+  --color-coral: #FF6B6B;
+  --color-grape: #8B5CF6;
+  --color-sunny: #FFC400;
+  --color-deep: #1A1A2E;
+  --color-ink: #2B2B3D;
+
+  /* Fonts */
+  --font-display: 'Manrope', system-ui, sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* =============================================
+   4. BASE STYLES
+   ============================================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* =============================================
+   5. CUSTOM UTILITIES
+   ============================================= */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+/* =============================================
+   6. KEYFRAMES
+   ============================================= */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

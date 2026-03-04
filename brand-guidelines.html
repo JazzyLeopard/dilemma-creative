@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dilemma Creative — Brand Guidelines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --turq: #00C9B7;
+      --turq-dark: #00A89A;
+      --turq-light: #E6FBF9;
+      --pink: #FF5CA8;
+      --pink-hot: #FF3D8B;
+      --pink-bg: #FFF0F6;
+      --pink-bg-soft: #FFF5F9;
+      --turq-bg: #EDFFFE;
+      --coral: #FF6B6B;
+      --grape: #8B5CF6;
+      --lime: #7DD636;
+      --sunny: #FFC400;
+      --deep: #1A1A2E;
+      --ink: #2B2B3D;
+      --muted: #9999AD;
+      --white: #FFFFFF;
+      --cream: #FFFCF5;
+      --sunny-bg: #FFFBE5;
+      --font-display: 'Manrope', sans-serif;
+      --font-serif: 'Fraunces', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --bounce: cubic-bezier(0.22, 1.4, 0.36, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--deep);
+      overflow-x: hidden;
+    }
+
+    .container {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .section {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 60px 48px;
+    }
+
+    .section-inner {
+      max-width: 1300px;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ========== NAV ========== */
+    .nav {
+      position: fixed;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 100;
+    }
+
+    .nav-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.15);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.5s var(--ease);
+      position: relative;
+    }
+
+    .nav-dot:hover, .nav-dot.active {
+      border-color: var(--turq);
+      background: var(--turq);
+      transform: scale(1.5);
+      box-shadow: 0 0 0 4px rgba(0,201,183,0.2);
+    }
+
+    .nav-dot .nav-label {
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .nav-dot:hover .nav-label { opacity: 1; }
+
+    .counter {
+      position: fixed;
+      bottom: 28px;
+      left: 48px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--muted);
+      z-index: 100;
+      letter-spacing: 0.08em;
+    }
+
+    .counter-num { color: var(--deep); }
+
+    /* ========== ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal.d1 { transition-delay: 0.08s; }
+    .reveal.d2 { transition-delay: 0.16s; }
+    .reveal.d3 { transition-delay: 0.24s; }
+    .reveal.d4 { transition-delay: 0.32s; }
+    .reveal.d5 { transition-delay: 0.4s; }
+    .reveal.d6 { transition-delay: 0.5s; }
+    .reveal.d7 { transition-delay: 0.6s; }
+
+    .section-num {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-num::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 2px;
+      background: var(--muted);
+      opacity: 0.3;
+    }
+
+    /* ===================================
+       SECTION 1: HERO
+    =================================== */
+    .hero {
+      background: var(--pink-bg);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '?';
+      position: absolute;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: min(70vw, 800px);
+      line-height: 0.8;
+      right: -5%;
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(160deg, rgba(0,201,183,0.15) 0%, rgba(255,92,168,0.12) 50%, rgba(139,92,246,0.08) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--turq-bg);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--turq-dark);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--turq);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 7.5vw, 110px);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: var(--deep);
+      margin-bottom: 8px;
+    }
+
+    .hero-title-serif {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title-q { color: var(--turq); }
+    .hero-title-grape { color: var(--grape); }
+
+    .hero-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(22px, 3vw, 36px);
+      color: var(--muted);
+      margin: 24px 0 40px;
+      line-height: 1.3;
+    }
+
+    .hero-tagline em {
+      font-style: normal;
+      color: var(--pink);
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+
+    .hero-services {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-service {
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      border: 2px solid;
+      transition: all 0.4s var(--bounce);
+      cursor: default;
+    }
+
+    .hero-service:hover {
+      transform: translateY(-3px) scale(1.04);
+    }
+
+    .hs-turq { border-color: var(--turq); color: var(--turq-dark); background: rgba(0,201,183,0.08); }
+    .hs-turq:hover { background: var(--turq); color: white; }
+    .hs-pink { border-color: var(--pink); color: var(--pink); background: rgba(255,92,168,0.06); }
+    .hs-pink:hover { background: var(--pink); color: white; }
+    .hs-sunny { border-color: var(--sunny); color: #D4A200; background: rgba(255,196,0,0.08); }
+    .hs-sunny:hover { background: var(--sunny); color: var(--deep); }
+    .hs-grape { border-color: var(--grape); color: var(--grape); background: rgba(139,63,224,0.06); }
+    .hs-grape:hover { background: var(--grape); color: white; }
+
+    .hero-pillars {
+      display: flex;
+      gap: 28px;
+      margin-top: 48px;
+    }
+
+    .hero-pillar {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-pillar span { font-size: 18px; }
+
+    /* ===================================
+       SECTION 2: COLORS
+    =================================== */
+    .colors-section {
+      background: var(--turq-bg);
+    }
+
+    .colors-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+
+    .colors-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .colors-title-accent {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--turq);
+    }
+
+    .colors-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 300px;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    }
+
+    .color-block {
+      aspect-ratio: 0.7;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.4s var(--ease);
+      position: relative;
+    }
+
+    .color-block:hover {
+      transform: scaleY(1.04);
+      z-index: 2;
+    }
+
+    .color-block-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      color: white;
+      margin-bottom: 2px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
+    .color-block-hex {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .color-block.copied .color-block-hex::after {
+      content: ' — copied!';
+      color: white;
+      font-weight: 600;
+    }
+
+    .gradient-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .gradient-pill {
+      height: 64px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      transition: all 0.4s var(--bounce);
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .gradient-pill:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    }
+
+    /* ===================================
+       SECTION 3: TYPOGRAPHY
+    =================================== */
+    .type-section {
+      background: var(--pink-bg-soft);
+    }
+
+    .type-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .type-left {}
+
+    .type-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .type-subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 400px;
+    }
+
+    .type-font-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .type-font-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.4s var(--ease);
+    }
+
+    .type-font-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+
+    .type-font-label {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .tfl-display { background: var(--turq); color: white; }
+    .tfl-serif { background: var(--pink); color: white; }
+    .tfl-body { background: var(--sunny); color: var(--deep); }
+
+    .type-font-name {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .tfn-manrope { font-family: var(--font-display); }
+    .tfn-fraunces { font-family: var(--font-serif); font-style: italic; font-weight: 400; font-size: 48px; }
+    .tfn-jakarta { font-family: var(--font-body); font-weight: 300; }
+
+    .type-font-chars {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 2;
+      letter-spacing: 0.03em;
+    }
+
+    .type-right {
+      padding-top: 24px;
+    }
+
+    .type-scale {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .type-scale-row {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+    }
+
+    .type-scale-row:last-child { border: none; }
+
+    .type-scale-meta {
+      min-width: 80px;
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .ts-display {
+      font-family: var(--font-display);
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .ts-h1 {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .ts-h2 {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 36px;
+      line-height: 1.1;
+    }
+
+    .ts-body {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+
+    .ts-small {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ===================================
+       SECTION 4: LOGO
+    =================================== */
+    .logo-section {
+      background: var(--white);
+      position: relative;
+    }
+
+    .logo-section::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,201,183,0.1) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      pointer-events: none;
+    }
+
+    .logo-section::after {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,92,168,0.1) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+      pointer-events: none;
+    }
+
+    .logo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+
+    .logo-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .logo-title-q {
+      display: inline-block;
+      color: var(--turq);
+      animation: wobble 4s ease-in-out infinite;
+    }
+
+    @keyframes wobble {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      75% { transform: rotate(-3deg); }
+    }
+
+    .logo-sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 320px;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+
+    .logo-card {
+      border-radius: 24px;
+      padding: 56px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all 0.5s var(--ease);
+      overflow: hidden;
+    }
+
+    .logo-card:hover { transform: scale(1.01); }
+
+    .logo-main-card {
+      grid-row: span 2;
+      background: var(--pink);
+      color: white;
+    }
+
+    .logo-main-wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 5vw, 72px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .logo-main-q {
+      color: var(--turq);
+      -webkit-text-fill-color: var(--turq);
+    }
+
+    .logo-main-sub {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-top: 4px;
+    }
+
+    .logo-light-card {
+      background: var(--white);
+      color: var(--deep);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .logo-gradient-card {
+      background: linear-gradient(135deg, var(--turq) 0%, var(--pink) 100%);
+      color: white;
+    }
+
+    .logo-sm-wordmark {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .logo-sm-sub {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      margin-top: 2px;
+    }
+
+    .logo-card-label {
+      position: absolute;
+      bottom: 16px;
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.3;
+    }
+
+    /* Component showcase */
+    .comp-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s var(--bounce);
+      letter-spacing: 0.01em;
+    }
+
+    .btn:hover { transform: translateY(-3px) scale(1.04); }
+    .btn:active { transform: scale(0.97); }
+
+    .btn-turq {
+      background: var(--turq);
+      color: white;
+      box-shadow: 0 6px 24px rgba(0,201,183,0.35);
+    }
+
+    .btn-turq:hover { box-shadow: 0 12px 32px rgba(0,201,183,0.45); }
+
+    .btn-pink-outline {
+      background: transparent;
+      color: var(--pink);
+      border: 2.5px solid var(--pink);
+    }
+
+    .btn-pink-outline:hover { background: var(--pink); color: white; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      font-weight: 600;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .btn-ghost::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background: var(--turq);
+      transform: scaleX(0);
+      transition: transform 0.3s var(--ease);
+    }
+
+    .btn-ghost:hover::after { transform: scaleX(1); }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 18px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: var(--font-display);
+      letter-spacing: 0.02em;
+    }
+
+    .tag-turq { background: var(--turq-light); color: var(--turq-dark); }
+    .tag-pink { background: #FFE5F1; color: var(--pink); }
+    .tag-grape { background: #F0E8FF; color: var(--grape); }
+    .tag-sunny { background: #FFF5D6; color: #D4A200; }
+
+    /* ===================================
+       SECTION 5: TONE OF VOICE
+    =================================== */
+    .voice-section {
+      background: var(--sunny-bg);
+    }
+
+    .voice-header {
+      margin-bottom: 48px;
+    }
+
+    .voice-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .voice-title-serif {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--pink);
+    }
+
+    .voice-sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--muted);
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .voice-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.4s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .voice-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+    }
+
+    .voice-card::before {
+      content: '\201C';
+      position: absolute;
+      font-family: var(--font-serif);
+      font-size: 120px;
+      line-height: 1;
+      top: -10px;
+      right: 20px;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+
+    .voice-lang {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .vl-nl { background: var(--turq); color: white; }
+    .vl-en { background: var(--pink); color: white; }
+
+    .voice-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.4;
+      color: var(--deep);
+      margin-bottom: 12px;
+    }
+
+    .voice-context {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .do-col, .dont-col {
+      padding: 28px;
+      border-radius: 20px;
+      background: var(--white);
+      border: 2px solid;
+    }
+
+    .do-col { border-color: var(--turq); }
+    .dont-col { border-color: var(--pink); }
+
+    .do-dont-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+    }
+
+    .do-col .do-dont-title { color: var(--turq-dark); }
+    .dont-col .do-dont-title { color: var(--pink); }
+
+    .do-dont-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .do-dont-list li {
+      font-size: 14px;
+      color: var(--ink);
+      padding-left: 24px;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .do-col .do-dont-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--turq);
+    }
+
+    .dont-col .do-dont-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: var(--pink);
+      transform: rotate(45deg);
+    }
+
+    /* ===================================
+       SECTION 6: SOCIAL TEMPLATES
+    =================================== */
+    .social-section {
+      background: var(--turq-bg);
+    }
+
+    .social-header {
+      margin-bottom: 48px;
+    }
+
+    .social-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .social-card {
+      aspect-ratio: 1;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s var(--bounce);
+      cursor: pointer;
+    }
+
+    .social-card:hover {
+      transform: translateY(-6px) rotate(-1deg) scale(1.03);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    .social-card:nth-child(even):hover {
+      transform: translateY(-6px) rotate(1deg) scale(1.03);
+    }
+
+    .sc-type {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    .sc-text {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .sc-footer {
+      position: absolute;
+      bottom: 16px;
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      opacity: 0.4;
+    }
+
+    .sc-1 { background: linear-gradient(150deg, var(--pink) 0%, var(--pink-hot) 100%); }
+    .sc-2 { background: var(--deep); }
+    .sc-3 { background: linear-gradient(150deg, var(--turq) 0%, var(--turq-dark) 100%); }
+    .sc-4 { background: linear-gradient(150deg, var(--sunny) 0%, #FFA940 100%); color: var(--deep); }
+    .sc-5 { background: linear-gradient(150deg, var(--grape) 0%, var(--pink) 100%); }
+    .sc-6 { background: linear-gradient(150deg, var(--turq) 0%, var(--grape) 100%); }
+
+    /* ===================================
+       SECTION 7: PHOTOGRAPHY
+    =================================== */
+    .photo-section {
+      background: var(--pink-bg);
+    }
+
+    .photo-header {
+      margin-bottom: 48px;
+    }
+
+    .photo-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .photo-title-serif {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--turq);
+    }
+
+    .photo-mosaic {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: 180px 180px;
+      gap: 12px;
+    }
+
+    .photo-tile {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+      transition: all 0.5s var(--ease);
+      cursor: pointer;
+    }
+
+    .photo-tile:hover {
+      transform: scale(1.03);
+      z-index: 2;
+    }
+
+    .photo-tile-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: white;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+    }
+
+    .photo-tile-desc {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 4px;
+    }
+
+    .pt-1 { grid-column: span 2; background: linear-gradient(135deg, var(--pink) 0%, var(--pink-hot) 100%); }
+    .pt-2 { grid-column: span 2; background: linear-gradient(135deg, var(--turq) 0%, var(--turq-dark) 100%); }
+    .pt-3 { background: linear-gradient(135deg, var(--sunny) 0%, #FFB340 100%); }
+    .pt-4 { grid-column: span 2; background: linear-gradient(135deg, var(--grape) 0%, var(--pink) 100%); }
+    .pt-5 { grid-column: span 2; background: linear-gradient(135deg, var(--turq) 0%, #00A89A 100%); }
+    .pt-6 { background: linear-gradient(135deg, var(--pink) 0%, var(--coral) 100%); }
+
+    .photo-dir {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .photo-dir-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.4s var(--ease);
+    }
+
+    .photo-dir-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+    }
+
+    .pdc-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .pdc-icon-warm { background: var(--pink-bg); }
+    .pdc-icon-auth { background: var(--turq-light); }
+    .pdc-icon-color { background: #F0E8FF; }
+
+    .pdc-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .pdc-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .container {
+        scroll-snap-type: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .section {
+        scroll-snap-align: none;
+        min-height: auto;
+        padding: 48px 20px;
+      }
+
+      .nav, .counter { display: none; }
+
+      .hero::before { font-size: 60vw; right: -15%; }
+
+      .colors-header, .logo-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .colors-sub, .logo-sub { text-align: left; }
+
+      .color-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .gradient-row { grid-template-columns: repeat(2, 1fr); }
+
+      .type-hero { grid-template-columns: 1fr; }
+      .type-right { padding-top: 0; }
+      .ts-display { font-size: 42px; }
+      .ts-h1 { font-size: 28px; }
+
+      .logo-grid { grid-template-columns: 1fr; }
+      .logo-main-card { grid-row: span 1; }
+
+      .voice-grid { grid-template-columns: 1fr; }
+      .do-dont { grid-template-columns: 1fr; }
+
+      .social-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .photo-mosaic {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+      .pt-1, .pt-2, .pt-4, .pt-5 { grid-column: span 1; }
+      .photo-dir { grid-template-columns: 1fr; }
+      .hero-pillars { flex-wrap: wrap; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="container">
+
+  <nav class="nav" id="nav"></nav>
+
+  <div class="counter">
+    <span class="counter-num" id="counter-current">01</span>
+    <span style="opacity:0.3">/</span>
+    <span style="opacity:0.3">07</span>
+  </div>
+
+  <!-- ==================== 1. HERO ==================== -->
+  <section class="section hero" data-label="Brand">
+    <div class="section-inner">
+      <div class="hero-content">
+        <div class="reveal">
+          <div class="hero-badge"><span class="hero-badge-dot"></span> Brand Guidelines 2026</div>
+        </div>
+        <div class="reveal d1">
+          <h1 class="hero-title">
+            dilemma<span class="hero-title-q">?</span><br>
+            <span class="hero-title-serif">creative</span>
+          </h1>
+        </div>
+        <div class="reveal d2">
+          <p class="hero-tagline">Your creative dilemma, <em>fixed.</em><br>Jouw creatieve dilemma, <em>opgelost.</em></p>
+        </div>
+        <div class="reveal d3">
+          <div class="hero-services">
+            <span class="hero-service hs-turq">Social Media Beheer</span>
+            <span class="hero-service hs-pink">Content Creatie</span>
+            <span class="hero-service hs-sunny">Strategie</span>
+            <span class="hero-service hs-grape">Food & Beauty</span>
+          </div>
+        </div>
+        <div class="reveal d4">
+          <div class="hero-pillars">
+            <div class="hero-pillar"><span>🤝</span> Benaderbaar</div>
+            <div class="hero-pillar"><span>⚡</span> Energiek</div>
+            <div class="hero-pillar"><span>💪</span> Zelfverzekerd</div>
+            <div class="hero-pillar"><span>🎨</span> Speels</div>
+            <div class="hero-pillar"><span>🧭</span> Gidsend</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 2. COLORS ==================== -->
+  <section class="section colors-section" data-label="Kleuren">
+    <div class="section-inner">
+      <div class="colors-header">
+        <div>
+          <div class="section-num reveal">02 Kleurenpalet</div>
+          <h2 class="colors-title reveal d1">Kleuren die<br><span class="colors-title-accent">knallen.</span></h2>
+        </div>
+        <div class="colors-sub reveal d2">Turquoise & pink als basis, aangevuld met energieke accenten. Fris, herkenbaar en altijd opvallend.</div>
+      </div>
+
+      <div class="color-grid reveal d3">
+        <div class="color-block" style="background:#00C9B7" onclick="copyHex(this,'#00C9B7')">
+          <div class="color-block-name">Turquoise</div>
+          <div class="color-block-hex">#00C9B7</div>
+        </div>
+        <div class="color-block" style="background:#FF5CA8" onclick="copyHex(this,'#FF5CA8')">
+          <div class="color-block-name">Pink</div>
+          <div class="color-block-hex">#FF5CA8</div>
+        </div>
+        <div class="color-block" style="background:#8B5CF6" onclick="copyHex(this,'#8B5CF6')">
+          <div class="color-block-name">Electric Grape</div>
+          <div class="color-block-hex">#8B5CF6</div>
+        </div>
+        <div class="color-block" style="background:#FFC400" onclick="copyHex(this,'#FFC400')">
+          <div class="color-block-name" style="color:var(--deep)">Sunny Glow</div>
+          <div class="color-block-hex" style="color:rgba(26,26,46,0.5)">#FFC400</div>
+        </div>
+        <div class="color-block" style="background:#FF6B6B" onclick="copyHex(this,'#FF6B6B')">
+          <div class="color-block-name">Coral Crush</div>
+          <div class="color-block-hex">#FF6B6B</div>
+        </div>
+        <div class="color-block" style="background:#1A1A2E" onclick="copyHex(this,'#1A1A2E')">
+          <div class="color-block-name">Deep Night</div>
+          <div class="color-block-hex">#1A1A2E</div>
+        </div>
+      </div>
+
+      <div class="gradient-row reveal d4">
+        <div class="gradient-pill" style="background:linear-gradient(135deg,#00C9B7,#FF5CA8)">Dilemma Splash</div>
+        <div class="gradient-pill" style="background:linear-gradient(135deg,#FF5CA8,#8B5CF6)">Berry Burst</div>
+        <div class="gradient-pill" style="background:linear-gradient(135deg,#00C9B7,#8B5CF6)">Ocean Grape</div>
+        <div class="gradient-pill" style="background:linear-gradient(135deg,#FFC400,#FF5CA8)">Sunset Glow</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 3. TYPOGRAPHY ==================== -->
+  <section class="section type-section" data-label="Typografie">
+    <div class="section-inner">
+      <div class="type-hero">
+        <div class="type-left">
+          <div class="section-num reveal">03 Typografie</div>
+          <h2 class="type-title reveal d1">Woorden<br>met lef.</h2>
+          <p class="type-subtitle reveal d2">Drie fonts die samen de persoonlijkheid van Dilemma Creative vangen: bold, elegant en helder.</p>
+
+          <div class="type-font-showcase">
+            <div class="type-font-card reveal d3">
+              <span class="type-font-label tfl-display">Display</span>
+              <div class="type-font-name tfn-manrope">Manrope</div>
+              <div class="type-font-chars">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 ?!&@#</div>
+            </div>
+            <div class="type-font-card reveal d4">
+              <span class="type-font-label tfl-serif">Serif</span>
+              <div class="type-font-name tfn-fraunces">Fraunces</div>
+              <div class="type-font-chars" style="font-family:var(--font-serif);font-style:italic">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 ?!&@#</div>
+            </div>
+            <div class="type-font-card reveal d5">
+              <span class="type-font-label tfl-body">Body</span>
+              <div class="type-font-name tfn-jakarta">Plus Jakarta Sans</div>
+              <div class="type-font-chars" style="font-family:var(--font-body)">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 ?!&@#</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-right">
+          <div class="type-scale">
+            <div class="type-scale-row reveal d2">
+              <div class="type-scale-meta">Display<br>64px</div>
+              <div class="ts-display">Dilemma<span style="color:var(--turq)">?</span></div>
+            </div>
+            <div class="type-scale-row reveal d3">
+              <div class="type-scale-meta">H1<br>42px</div>
+              <div class="ts-h1">Jouw fix</div>
+            </div>
+            <div class="type-scale-row reveal d4">
+              <div class="type-scale-meta">H2<br>36px</div>
+              <div class="ts-h2">Content met smaak</div>
+            </div>
+            <div class="type-scale-row reveal d5">
+              <div class="type-scale-meta">Body<br>18px</div>
+              <div class="ts-body">Wij nemen je bij de hand en gidsen je door het social media doolhof met energie en creativiteit.</div>
+            </div>
+            <div class="type-scale-row reveal d6">
+              <div class="type-scale-meta">Small<br>14px</div>
+              <div class="ts-small">Content creatie · Strategie · Social media beheer · Food & Beauty</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 4. LOGO ==================== -->
+  <section class="section logo-section" data-label="Logo">
+    <div class="section-inner">
+      <div class="logo-header">
+        <div>
+          <div class="section-num reveal">04 Logo</div>
+          <h2 class="logo-title reveal d1">Het vraagteken<span class="logo-title-q">?</span><br>is alles.</h2>
+        </div>
+        <p class="logo-sub reveal d2">Het vertegenwoordigt het dilemma — en ons antwoord daarop. Speels, herkenbaar, altijd aanwezig.</p>
+      </div>
+
+      <div class="logo-grid reveal d3">
+        <div class="logo-card logo-main-card">
+          <div style="text-align:center">
+            <div class="logo-main-wordmark">dilemma<span class="logo-main-q">?</span></div>
+            <div class="logo-main-sub">creative</div>
+          </div>
+          <div class="logo-card-label">Primary — turquoise op pink</div>
+        </div>
+        <div class="logo-card logo-light-card">
+          <div style="text-align:center">
+            <div class="logo-sm-wordmark">dilemma<span style="color:var(--turq)">?</span></div>
+            <div class="logo-sm-sub">creative</div>
+          </div>
+          <div class="logo-card-label">Op licht</div>
+        </div>
+        <div class="logo-card logo-gradient-card">
+          <div style="text-align:center">
+            <div class="logo-sm-wordmark">dilemma<span style="opacity:0.8">?</span></div>
+            <div class="logo-sm-sub">creative</div>
+          </div>
+          <div class="logo-card-label">Gradient</div>
+        </div>
+      </div>
+
+      <div class="comp-row reveal d4">
+        <button class="btn btn-turq">Neem Contact Op</button>
+        <button class="btn btn-pink-outline">Bekijk Pakketten</button>
+        <button class="btn btn-ghost">Meer info →</button>
+      </div>
+
+      <div class="comp-row reveal d5" style="margin-top:12px">
+        <span class="tag tag-turq">Social Media</span>
+        <span class="tag tag-pink">Content Creatie</span>
+        <span class="tag tag-grape">Strategie</span>
+        <span class="tag tag-sunny">Food & Beauty</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 5. TONE OF VOICE ==================== -->
+  <section class="section voice-section" data-label="Tone of Voice">
+    <div class="section-inner">
+      <div class="voice-header">
+        <div class="section-num reveal">05 Tone of Voice</div>
+        <h2 class="voice-title reveal d1">Hoe we<br><span class="voice-title-serif">klinken.</span></h2>
+        <p class="voice-sub reveal d2">Als een creatieve beste vriendin die ook expert is. Warm, direct en altijd met een knipoog.</p>
+      </div>
+
+      <div class="voice-grid reveal d3">
+        <div class="voice-card">
+          <span class="voice-lang vl-nl">Nederlands</span>
+          <div class="voice-quote">"Nog steeds random foto's posten en hopen op het beste? Laten we dat fixen."</div>
+          <div class="voice-context">Introtekst — website of social post</div>
+        </div>
+        <div class="voice-card">
+          <span class="voice-lang vl-en">English</span>
+          <div class="voice-quote">"Your food looks amazing. Your feed should too."</div>
+          <div class="voice-context">Tagline — food niche</div>
+        </div>
+        <div class="voice-card">
+          <span class="voice-lang vl-nl">Nederlands</span>
+          <div class="voice-quote">"Wij beheren niet zomaar je socials — wij laten ze werken."</div>
+          <div class="voice-context">Service beschrijving</div>
+        </div>
+        <div class="voice-card">
+          <span class="voice-lang vl-en">English</span>
+          <div class="voice-quote">"Still guessing what to post? That's the dilemma. We're the fix."</div>
+          <div class="voice-context">Brand pitch — general</div>
+        </div>
+      </div>
+
+      <div class="do-dont reveal d4">
+        <div class="do-col">
+          <div class="do-dont-title">Wel doen</div>
+          <ul class="do-dont-list">
+            <li>Klink als een deskundige vriendin</li>
+            <li>Gebruik actieve, energieke taal</li>
+            <li>Wees direct en duidelijk</li>
+            <li>Gebruik "wij" en "jij"</li>
+            <li>Toon enthousiasme met doel</li>
+          </ul>
+        </div>
+        <div class="dont-col">
+          <div class="do-dont-title">Niet doen</div>
+          <ul class="do-dont-list">
+            <li>Klinken als een corporate bedrijf</li>
+            <li>Ingewikkeld jargon gebruiken</li>
+            <li>Te veel uitroeptekens!!!!</li>
+            <li>"Het bureau" of "men" gebruiken</li>
+            <li>Geforceerd trendy klinken</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 6. SOCIAL TEMPLATES ==================== -->
+  <section class="section social-section" data-label="Social">
+    <div class="section-inner">
+      <div class="social-header">
+        <div class="section-num reveal">06 Social Templates</div>
+        <h2 class="social-title reveal d1">Content die<br>eruit <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--pink)">springt.</span></h2>
+      </div>
+
+      <div class="social-grid reveal d2">
+        <div class="social-card sc-1">
+          <div class="sc-type">Tip van de week</div>
+          <div class="sc-text">3 dingen die je feed kapot maken</div>
+          <div class="sc-footer">dilemma? creative</div>
+        </div>
+        <div class="social-card sc-2">
+          <div class="sc-type">Testimonial</div>
+          <div class="sc-text" style="font-family:var(--font-serif);font-style:italic;font-weight:400">"Eindelijk snapt iemand mijn brand."</div>
+          <div class="sc-footer">— Sarah, Beauty Studio</div>
+        </div>
+        <div class="social-card sc-3">
+          <div class="sc-type">Behind the scenes</div>
+          <div class="sc-text">Zo creeren wij jouw content</div>
+          <div class="sc-footer">dilemma? creative</div>
+        </div>
+        <div class="social-card sc-4">
+          <div class="sc-type">Food content</div>
+          <div class="sc-text">Foodfotografie tips voor je restaurant</div>
+          <div class="sc-footer" style="color:var(--deep)">dilemma? creative</div>
+        </div>
+        <div class="social-card sc-5">
+          <div class="sc-type">Beauty content</div>
+          <div class="sc-text">Reels die klanten binnenbrengen</div>
+          <div class="sc-footer">dilemma? creative</div>
+        </div>
+        <div class="social-card sc-6">
+          <div class="sc-type">Educatief</div>
+          <div class="sc-text">Algorithm update: wat verandert er?</div>
+          <div class="sc-footer">dilemma? creative</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 7. PHOTOGRAPHY ==================== -->
+  <section class="section photo-section" data-label="Fotografie">
+    <div class="section-inner">
+      <div class="photo-header">
+        <div class="section-num reveal">07 Fotografie & Beeldtaal</div>
+        <h2 class="photo-title reveal d1">Beelden die je<br><span class="photo-title-serif">kunt proeven.</span></h2>
+      </div>
+
+      <div class="photo-mosaic reveal d2">
+        <div class="photo-tile pt-1">
+          <div>
+            <div class="photo-tile-label">Food</div>
+            <div class="photo-tile-desc">Overhead flat-lays, textuur & stoom</div>
+          </div>
+        </div>
+        <div class="photo-tile pt-2">
+          <div>
+            <div class="photo-tile-label">Beauty</div>
+            <div class="photo-tile-desc">Clean shots, zachte belichting</div>
+          </div>
+        </div>
+        <div class="photo-tile pt-3">
+          <div>
+            <div class="photo-tile-label">Detail</div>
+          </div>
+        </div>
+        <div class="photo-tile pt-4">
+          <div>
+            <div class="photo-tile-label">Proces</div>
+            <div class="photo-tile-desc">Behind the scenes, het echte verhaal</div>
+          </div>
+        </div>
+        <div class="photo-tile pt-5">
+          <div>
+            <div class="photo-tile-label">Textuur</div>
+            <div class="photo-tile-desc">Close-ups, handen aan het werk</div>
+          </div>
+        </div>
+        <div class="photo-tile pt-6">
+          <div>
+            <div class="photo-tile-label">Styling</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-dir reveal d3">
+        <div class="photo-dir-card">
+          <div class="pdc-icon pdc-icon-warm">☀️</div>
+          <div class="pdc-title">Helder & luchtig</div>
+          <div class="pdc-desc">Natuurlijk licht, levendige kleuren. Nooit donker of zwaar — altijd uitnodigend.</div>
+        </div>
+        <div class="photo-dir-card">
+          <div class="pdc-icon pdc-icon-auth">🤳</div>
+          <div class="pdc-title">Authentiek</div>
+          <div class="pdc-desc">Echte momenten, niet overmatig geposeerd. De mens achter het merk staat centraal.</div>
+        </div>
+        <div class="photo-dir-card">
+          <div class="pdc-icon pdc-icon-color">🎨</div>
+          <div class="pdc-title">Kleur accenten</div>
+          <div class="pdc-desc">Altijd minstens een merktkleur aanwezig. Subtiel of bold als achtergrond.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const container = document.getElementById('container');
+  const sections = document.querySelectorAll('.section');
+  const navEl = document.getElementById('nav');
+  const counterEl = document.getElementById('counter-current');
+
+  sections.forEach((s, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.innerHTML = `<span class="nav-label">${s.dataset.label}</span>`;
+    dot.addEventListener('click', () => sections[i].scrollIntoView({ behavior: 'smooth' }));
+    navEl.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.nav-dot');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(sections).indexOf(entry.target);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        counterEl.textContent = String(idx + 1).padStart(2, '0');
+        entry.target.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      }
+    });
+  }, { threshold: 0.25 });
+
+  sections.forEach(s => observer.observe(s));
+
+  function copyHex(block, hex) {
+    navigator.clipboard.writeText(hex);
+    block.classList.add('copied');
+    setTimeout(() => block.classList.remove('copied'), 1500);
+  }
+</script>
+
+</body>
+</html>
