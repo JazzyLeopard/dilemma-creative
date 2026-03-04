@@ -5,6 +5,19 @@ export const metadata: Metadata = {
   title: "Dilemma Creative — Jouw creatieve dilemma, opgelost.",
   description:
     "Social media beheer & content creatie voor food & beauty ondernemers in Vlaanderen. Jouw creatieve dilemma, opgelost.",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon.svg",
+  },
+  openGraph: {
+    title: "Dilemma Creative",
+    description: "Social media beheer & content creatie voor food & beauty ondernemers. Jouw creatieve dilemma, opgelost.",
+    siteName: "Dilemma Creative",
+    locale: "nl_BE",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
