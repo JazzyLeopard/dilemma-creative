@@ -26,8 +26,11 @@ const reviews = [
 
 export function Testimonials() {
   return (
-    <RevealSection id="reviews" className="py-28 md:py-32 px-5 md:px-12 bg-deep text-white">
-      <div className="max-w-[1280px] mx-auto">
+    <RevealSection id="reviews" className="py-28 md:py-36 px-5 md:px-12 bg-deep text-white relative overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-turq/5 pointer-events-none" />
+
+      <div className="max-w-[1280px] mx-auto relative z-10">
         <Reveal>
           <div className="font-display text-[11px] font-extrabold tracking-[0.18em] uppercase text-white/40 mb-4 flex items-center gap-3">
             Wat Klanten Zeggen
@@ -44,13 +47,22 @@ export function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
           {reviews.map((r, i) => (
             <Reveal key={r.name} delay={i + 2}>
-              <div className="bg-white/[0.06] border border-white/[0.08] rounded-3xl p-9 hover:bg-white/10 hover:translate-y-[-3px] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                <div className="text-sunny text-base tracking-widest mb-5">★★★★★</div>
-                <p className="font-serif italic text-lg leading-relaxed mb-6 text-white/90">
+              <div className="bg-white/[0.06] border border-white/[0.08] rounded-3xl p-9 hover:bg-white/10 hover:translate-y-[-3px] hover:border-white/15 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-default group">
+                {/* Stars */}
+                <div className="flex gap-1 mb-6">
+                  {[...Array(5)].map((_, si) => (
+                    <svg key={si} className="w-4.5 h-4.5 text-sunny" viewBox="0 0 24 24" fill="currentColor">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
+                </div>
+
+                <blockquote className="font-serif italic text-lg leading-relaxed mb-7 text-white/90">
                   &ldquo;{r.quote}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full ${r.color} flex items-center justify-center font-display font-extrabold text-[15px]`}>
+                </blockquote>
+
+                <div className="flex items-center gap-3 pt-5 border-t border-white/[0.06]">
+                  <div className={`w-10 h-10 rounded-full ${r.color} flex items-center justify-center font-display font-extrabold text-[15px] shrink-0`}>
                     {r.avatar}
                   </div>
                   <div>

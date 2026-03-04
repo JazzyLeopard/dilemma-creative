@@ -2,8 +2,12 @@ import { RevealSection, Reveal } from "./RevealSection";
 
 const services = [
   {
-    icon: "📱",
-    iconBg: "bg-turq-light",
+    icon: (
+      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" /><line x1="12" y1="18" x2="12.01" y2="18" />
+      </svg>
+    ),
+    iconBg: "bg-turq-light text-turq-dark",
     title: "Social Media Beheer",
     desc: "Wij beheren je kanalen van A tot Z. Planning, posting, community management en rapportage. Jij focust op je zaak, wij op je feed.",
     tags: [
@@ -12,10 +16,15 @@ const services = [
       { label: "Facebook", cls: "bg-turq-light text-turq-dark" },
     ],
     accent: "bg-turq",
+    accentShadow: "group-hover:shadow-[0_24px_64px_rgba(0,201,183,0.12)]",
   },
   {
-    icon: "🎨",
-    iconBg: "bg-pink-bg",
+    icon: (
+      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="13.5" cy="6.5" r="2.5" /><path d="M17 15V2" /><path d="M21 18.5c0 2.5-3.5 3.5-6 3.5s-6-1-6-3.5V2h12v16.5z" /><path d="M3 6.5c0 2.5 3.5 3.5 6 3.5" />
+      </svg>
+    ),
+    iconBg: "bg-pink-bg text-pink-hot",
     title: "Content Creatie",
     desc: "Scroll-stopping visuals, reels en stories die je merk tot leven brengen. Authentiek, on-brand en altijd met smaak.",
     tags: [
@@ -24,10 +33,15 @@ const services = [
       { label: "Design", cls: "bg-[#FFE5F1] text-pink-brand" },
     ],
     accent: "bg-pink-hot",
+    accentShadow: "group-hover:shadow-[0_24px_64px_rgba(255,31,169,0.1)]",
   },
   {
-    icon: "🧭",
-    iconBg: "bg-[#F0E8FF]",
+    icon: (
+      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+      </svg>
+    ),
+    iconBg: "bg-[#F0E8FF] text-grape",
     title: "Strategie & Advies",
     desc: "Geen random posten meer. Wij bouwen een strategie die past bij jouw doelen, doelgroep en branche. Data-gedreven, creatief uitgevoerd.",
     tags: [
@@ -36,12 +50,13 @@ const services = [
       { label: "Groei", cls: "bg-[#F0E8FF] text-grape" },
     ],
     accent: "bg-grape",
+    accentShadow: "group-hover:shadow-[0_24px_64px_rgba(139,92,246,0.1)]",
   },
 ];
 
 export function Services() {
   return (
-    <RevealSection id="diensten" className="py-28 md:py-32 px-5 md:px-12">
+    <RevealSection id="diensten" className="py-28 md:py-36 px-5 md:px-12">
       <div className="max-w-[1280px] mx-auto">
         <Reveal>
           <div className="font-display text-[11px] font-extrabold tracking-[0.18em] uppercase text-muted mb-4 flex items-center gap-3">
@@ -64,13 +79,13 @@ export function Services() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i + 2}>
-              <div className="group bg-white border border-black/[0.06] rounded-[28px] p-11 hover:translate-y-[-6px] hover:shadow-[0_24px_64px_rgba(0,0,0,0.08)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden">
-                <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-[28px] ${s.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-400`} />
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-[28px] mb-6 ${s.iconBg}`}>
+              <div className={`group bg-white border border-black/[0.06] rounded-[28px] p-10 hover:translate-y-[-6px] ${s.accentShadow} transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] relative overflow-hidden cursor-pointer`}>
+                <div className={`absolute top-0 left-0 right-0 h-[3px] ${s.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-400`} />
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-7 ${s.iconBg}`}>
                   {s.icon}
                 </div>
                 <h3 className="font-display text-[22px] font-extrabold tracking-[-0.02em] mb-3.5">{s.title}</h3>
-                <p className="text-[15px] text-muted leading-relaxed mb-5">{s.desc}</p>
+                <p className="text-[15px] text-muted leading-relaxed mb-6">{s.desc}</p>
                 <div className="flex flex-wrap gap-2">
                   {s.tags.map((t) => (
                     <span key={t.label} className={`px-3.5 py-1.5 rounded-full font-display text-[11px] font-bold tracking-wide ${t.cls}`}>
